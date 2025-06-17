@@ -1,0 +1,84 @@
+[
+    {
+        "id": "port_scan_detection",
+        "name": "Port Scan Detection",
+        "enabled": true,
+        "type": "threshold",
+        "description": "Detects potential port scanning activity",
+        "conditions": {
+            "source_ip_connections": {
+                "threshold": 20,
+                "time_window": 60
+            }
+        },
+        "severity": "medium",
+        "action": "alert"
+    },
+    {
+        "id": "brute_force_ssh",
+        "name": "SSH Brute Force Detection",
+        "enabled": true,
+        "type": "threshold",
+        "description": "Detects SSH brute force attempts",
+        "conditions": {
+            "destination_port": 22,
+            "failed_attempts": {
+                "threshold": 5,
+                "time_window": 300
+            }
+        },
+        "severity": "high",
+        "action": "alert"
+    },
+    {
+        "id": "dns_tunneling",
+        "name": "DNS Tunneling Detection",
+        "enabled": true,
+        "type": "pattern",
+        "description": "Detects potential DNS tunneling",
+        "conditions": {
+            "dns_query_length": {
+                "min_length": 50
+            },
+            "dns_query_frequency": {
+                "threshold": 100,
+                "time_window": 60
+            }
+        },
+        "severity": "high",
+        "action": "alert"
+    },
+    {
+        "id": "arp_spoofing",
+        "name": "ARP Spoofing Detection",
+        "enabled": true,
+        "type": "pattern",
+        "description": "Detects ARP spoofing attacks",
+        "conditions": {
+            "arp_type": "reply",
+            "duplicate_ip_mac": true
+        },
+        "severity": "critical",
+        "action": "alert"
+    },
+    {
+        "id": "suspicious_user_agent",
+        "name": "Suspicious User Agent",
+        "enabled": true,
+        "type": "blacklist",
+        "description": "Detects suspicious HTTP User-Agent strings",
+        "conditions": {
+            "user_agent_patterns": [
+                "sqlmap",
+                "nikto",
+                "nmap",
+                "masscan",
+                "gobuster",
+                "dirb",
+                "burp"
+            ]
+        },
+        "severity": "medium",
+        "action": "alert"
+    }
+]

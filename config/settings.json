@@ -1,0 +1,36 @@
+{
+    "nvd_api_key": "YOUR_NVD_API_KEY_HERE",
+    "mongodb": {
+        "host": "localhost",
+        "port": 27017,
+        "database": "sentinelsec",
+        "collections": {
+            "packets": "packets",
+            "alerts": "alerts",
+            "anomalies": "anomalies",
+            "rules": "rules",
+            "cve_cache": "cve_cache"
+        }
+    },
+    "sniffing": {
+        "interface": "auto",
+        "packet_limit": 10000,
+        "timeout": 30
+    },
+    "anomaly_detection": {
+        "enabled": true,
+        "model_type": "isolation_forest",
+        "contamination": 0.1,
+        "retrain_interval": 3600
+    },
+    "gui": {
+        "theme": "dark",
+        "refresh_interval": 1000,
+        "chart_history": 100
+    },
+    "cve": {
+        "cache_duration": 86400,
+        "results_per_page": 20,
+        "auto_sync": true
+    }
+}
